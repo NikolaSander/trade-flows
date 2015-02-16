@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset=utf-8>
+  <title>Trade Flows</title>
+  <meta name=description content="Trade Flows, 2007-13">
+  <meta name=viewport content="width=device-width, initial-scale=1.0">
+  <link href="style.css" rel="stylesheet" media="all">
+  
+  <script src="circular-migration-plot.min.js"></script>
+</head>
+<body>
+  <div id=container class="container">
+  
+   	<header role="banner">
+  		<h1 style="text-align:left">Trade Flows 2007-13 in million US Dollars</h1>
+		
+		<div class="lead-in">
+		Only flows of at least 2 billion Dollars are shown.
+		</div>
+	<hr>
+	</header>	
+
+	<div class="wrap">
+		<main role="main">
+		<nav role=navigation>
+		<div id="timeline"></div>
+		</nav>		
+		<div id="chart"></div>
+		</main>
+	</div>
+
+  <script>
+    var labels = {
+		2007: '2007',
+		2009: '2009',
+		2011: '2011',
+		2013: '2013'
+    }
+
+    CircularMigrationPlot({
+      data: 'trade-flows-millions.json',
+      chart:{
+        element: '#chart',
+        mylayout: {
+          threshold: 20000,
+          labelThreshold: 30000,
+		  colors: ['#00584B','#cd3d08','#ffca00','#7DDB00','#996633','#666633','#683f92','#1D64FF','#00BDFF','#00927D']  
+			  }
+      },
+      timeline: {
+        element: '#timeline',
+        formatter: function(d) {
+          return labels[d]
+        }
+      }
+	  });
+  </script>
+    
+	<footer role="contentinfo">
+
+ 		<div class="license">
+		This visualisation has been created with the <a href="https://github.com/jo/circular-migration-plot"  target="_blank">custom d3.js library</a> developed by Null2 for <a href="http://www.global-migration.info"  target="_blank">The Global Flow of People</a>.</p> 
+		</div>
+		
+	</footer>
+</div>
+	
+</body>
+</html>

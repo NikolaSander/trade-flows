@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset=utf-8>
+  <title>Trade Flows</title>
+  <meta name=description content="Trade Flows">
+  <meta name=viewport content="width=device-width, initial-scale=1.0">
+  <link href="style.css" rel="stylesheet" media="all">
+
+  <script src="circular-migration-plot.min.js"></script>
+  <style>
+    body {
+      background-color: white;
+      min-width: 460px;
+    }
+    #timeline {
+      position: relative;
+      margin-top: 3ex;
+    }
+    #diagram {
+      margin: 0 auto;
+      max-width: 800px;
+    }
+    footer {
+      position: absolute;
+      bottom: 1ex;
+      right: 0;
+    }
+    @media all and (max-width: 800px) {
+      .year label {
+        padding: 6px 7px 5px;
+        font-size: 11px;
+      }
+      svg {
+        font-size: 15px;
+      }
+      text.region {
+        font-size: 16px;
+      }
+
+    }
+    @media all and (max-width: 580px) {
+      .year label {
+        padding: 3px 6px 4px;
+        font-size: 9px;
+      }
+    }
+    @media all and (max-width: 500px) {
+      .year label {
+        padding: 2px 5px 3px;
+        font-size: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div id="timeline"></div>
+  </nav>
+  <div id="chart"></div>
+  <footer>
+    <small><a href="http://nikolasander.com/trade-flows/" target="_blank">http://nikolasander.com/trade-flows</a></small>
+  </footer>
+
+   <script>
+    var labels = {
+		2007: '2007',
+		2009: '2009',
+		2011: '2011',
+		2013: '2013'
+    }
+
+    CircularMigrationPlot({
+      data: 'trade-flows-millions.json',
+      chart:{
+        element: '#chart',
+        mylayout: {
+          threshold: 5000,
+          labelThreshold: 00,
+		  colors: ['#00584B','#D02300','#FF9147','#7DDB00','#FF7D47','#A05A2C','#7500FF','#1D64FF','#00BDFF','#00927D']  
+			  }
+      },
+      timeline: {
+        element: '#timeline',
+        formatter: function(d) {
+          return labels[d]
+        }
+      }
+	  });
+  </script>
+</body>
+</html>
